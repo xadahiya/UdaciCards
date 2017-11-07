@@ -4,7 +4,8 @@ function reducer(state={}, action){
 
   switch (action.type){
     case ADD_NEW_DECK:
-      return {...state, decks:[...state.decks, [action.deck]]}
+      const deck = action.deck
+      return {...state, ...deck}
     default:
     return state
 
