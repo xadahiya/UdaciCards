@@ -1,9 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View, AsyncStorage, TextInput, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, AsyncStorage, TextInput, TouchableOpacity, ToastAndroid} from 'react-native';
 import {connect} from 'react-redux';
-import {addDeck} from '../actions';
+import * as Actions from '../actions';
 import { KEY } from '../utils/Keys';
-
+import * as Api from '../utils/Api';
 class NewDeckForm extends React.Component {
   state = {
     deckname: '',
@@ -28,6 +28,7 @@ class NewDeckForm extends React.Component {
   createDeck = (deckname) => {
     let deck = {}
     deck[deckname] = {
+      title: deckname,
       questions: []
     }
     return deck
@@ -36,10 +37,23 @@ class NewDeckForm extends React.Component {
   _submitForm = () => {
     const { deckname} = this.state;
     const deck = this.createDeck(deckname);
+    if (deckname.length > 3){
 
-    AsyncStorage.mergeItem(KEY, JSON.stringify(deck)).then(
-      this.props.dispatch(addDeck(deck))
-    ).catch(err => console.log(err))
+      Api.addDeck(deck).then(
+        this.props.dispatch(Actions.addDeck(deck))
+      ).catch(err => {
+        ToastAndroid.show("Adding Deck Failed! Please try again", ToastAndroid.SHORT)
+        console.log(err)})
+        this.setState({
+          deckname: '',
+        })
+
+    }
+    else{
+      ToastAndroid.show("Deck Title Too Small!", ToastAndroid.SHORT)
+
+    }
+
   };
 }
 
