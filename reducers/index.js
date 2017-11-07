@@ -15,7 +15,7 @@ function reducer(state = {}, action) {
     case ADD_CARD:
       return {
         ...state,
-      [action.deck_id]: {
+        [action.deck_id]: {
           ...state[action.deck_id],
           'questions': [
             ...state[action.deck_id]['questions'],

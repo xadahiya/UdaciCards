@@ -14,8 +14,10 @@ class Decks extends React.Component {
     getAllDecks()
   }
 
-  componentWillReceiveProps(newProps){
-    this.setState({...newProps.decks})
+  componentWillReceiveProps(newProps) {
+    this.setState({
+      ...newProps.decks
+    })
   }
 
   render() {
@@ -31,19 +33,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFFFFF'
-    
+
   }
 });
 
 mapStateToProps = (state) => {
-  return {
-    decks: state
-  }
+  return {decks: state}
 }
 
 mapDispatchToProps = (dispatch) => {
   return {
-    getAllDecks : () => Api.getAllDecks().then(data => dispatch(Actions.receiveDecks(data))).catch(err => console.log(err))
+    getAllDecks: () => Api.getAllDecks().then(data => dispatch(Actions.receiveDecks(data))).catch(err => console.log(err))
 
   }
 }

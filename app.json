@@ -1,5 +1,20 @@
 {
   "expo": {
-    "sdkVersion": "22.0.0"
+    "sdkVersion": "22.0.0",
+    "orientation": "portrait",
+    "name": "UdaciCards",
+    "description": "Flashcards app by xadahiya",
+    "slug": "udacficards",
+    "version": "1.0",
+    "icon": "https://tylermcginnis.com/udacifitness-512.png",
+    "notification": {
+      "icon": "https://tylermcginnis.com/udacifitness-45.png"
+    },
+    "ios": {
+      "bundleIdentifier": "org.xadahiya.udacicards"
+    },
+    "android": {
+      "package": "org.xadahiya.udacicards"
+    }
   }
 }

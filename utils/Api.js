@@ -1,10 +1,9 @@
 import {AsyncStorage} from 'react-native';
 import {KEY} from './Keys';
 
-
 export function getAllDecks() {
   // AsyncStorage.clear()
-return AsyncStorage.getItem(KEY).then((value) => JSON.parse(value))
+  return AsyncStorage.getItem(KEY).then((value) => JSON.parse(value))
 }
 
 export function setDecks(decks) {

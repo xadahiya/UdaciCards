@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, StatusBar} from 'react-native';
+import {StyleSheet, Text, View, StatusBar} from 'react-native';
 import {TabNavigator, StackNavigator} from 'react-navigation';
 import Decks from './components/Decks';
 import NewDeck from './components/NewDeck';
@@ -9,7 +9,7 @@ import QuizView from './components/QuizView';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import reducer from './reducers';
-
+import {setLocalNotification} from './utils/Helpers';
 const Navigator = TabNavigator({
   Decks: {
     screen: Decks,
@@ -29,21 +29,20 @@ const Navigator = TabNavigator({
   animationEnabled: true,
   tabBarOptions: {
     allowFontScaling: true,
-  style: {
-  backgroundColor: 'black',
-}
-},
-
- });
+    style: {
+      backgroundColor: 'black'
+    }
+  }
+});
 
 const Stack = StackNavigator({
   Home: {
-    screen: Navigator,
+    screen: Navigator
   },
   DeckView: {
     screen: DeckView,
     navigationOptions: {
-      title:"Udacicards",
+      title: "Udacicards"
     }
   },
   AddCardView: {
@@ -62,14 +61,18 @@ const Stack = StackNavigator({
 
 const store = createStore(reducer);
 export default class App extends React.Component {
+
+  componentDidMount() {
+    setLocalNotification()
+  }
   render() {
 
     return (
       <Provider store={store}>
-      <View style={styles.container}>
-       <StatusBar barStyle = "light-content" hidden = {false}/>
-      <Stack/>
-      </View>
+        <View style={styles.container}>
+          <StatusBar barStyle="light-content" hidden={false}/>
+          <Stack/>
+        </View>
       </Provider>
     );
   }
@@ -77,6 +80,6 @@ export default class App extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-  },
+    flex: 1
+  }
 });

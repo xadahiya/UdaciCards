@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import NewDeckForm from './NewDeckForm';
 class NewDeck extends React.Component {
   render() {
@@ -15,8 +15,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFFFFF'
-    
-  },
+
+  }
 });
 
 export default NewDeck
